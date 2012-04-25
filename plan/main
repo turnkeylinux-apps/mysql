@@ -1,0 +1,9 @@
+#include <turnkey/base>
+
+mysql-server
+
+phpmyadmin
+lighttpd                 /* we use lighty to power phpmyadmin */
+php5-cgi                 /* needed for lighty cgi */
+
+webmin-mysql             /* webmin is in base, give the user the option */
