@@ -6,6 +6,10 @@ cat > /etc/phpmyadmin/lighttpd.conf <<EOF
     server.document-root = "/usr/share/phpmyadmin"
 }
 
+\$HTTP["url"] =~ "^/libraries" {
+    url.access-deny = ( "" )
+}
+
 \$HTTP["url"] =~ "^/setup" {
     url.access-deny = ( "" )
 }
