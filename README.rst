@@ -10,7 +10,7 @@ This appliance includes all the standard features in `TurnKey Core`_,
 and on top of that:
 
 - `PHPMyAdmin`_ administration frontend for MySQL (listening on port
-  12322 - uses SSL).
+  443 - uses SSL).
 - MySQL webmin module.
 - MySQL is configured to listen on port 3306 TCP on all interfaces by
   default.
