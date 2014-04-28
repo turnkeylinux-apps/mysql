@@ -2,7 +2,7 @@ MySQL - Relational Database Management System
 =============================================
 
 `MySQL`_ is a relational database management system (RDBMS) which has
-more than 11 million installations, and is owned by Sun Microsystems.
+more than 11 million installations, and is owned by Oracle.
 MySQL is a fast, stable, robust, easy to use, and true multi-user,
 multi-threaded SQL database server.
 
