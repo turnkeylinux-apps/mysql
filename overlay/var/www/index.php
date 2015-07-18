@@ -46,6 +46,8 @@
                         $_SERVER{'HTTP_HOST'}; ?>:12322"><img
                         src="images/adminer.png"/>Adminer</a>
                     </div>
+                    <div></div>
+                    <div></div>
 
                     <h2>Resources and references</h2>
                     <ul>
