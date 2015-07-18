@@ -9,8 +9,9 @@ multi-threaded SQL database server.
 This appliance includes all the standard features in `TurnKey Core`_,
 and on top of that:
 
-- `PHPMyAdmin`_ administration frontend for MySQL (listening on port
-  443 - uses SSL).
+- Web Control Panel
+- `Adminer`_ administration frontend for MySQL (listening on port
+  12322 - uses SSL).
 - MySQL webmin module.
 - MySQL is configured to listen on port 3306 TCP on all interfaces by
   default.
@@ -29,9 +30,9 @@ large, huge}*
 Credentials *(passwords set at first boot)*
 -------------------------------------------
 
--  Webmin, SSH, MySQL, phpMyAdmin: username **root**
+-  Webmin, SSH, MySQL, Adminer: username **root**
 
 
 .. _MySQL: http://www.mysql.com/
 .. _TurnKey Core: http://www.turnkeylinux.org/core
-.. _PHPMyAdmin: http://www.phpmyadmin.net/
+.. _Adminer: http://adminer.org/
