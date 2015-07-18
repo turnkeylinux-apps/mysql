@@ -12,3 +12,6 @@ $MYSQL_BATCH --execute "INSERT INTO mysql.user ( Host , User , Password , Select
 
 # configure mysql to listen on all interfaces
 sed --in-place "s/^bind-address/#bind-address/" /etc/mysql/my.cnf
+
+# enable tklcp site
+lighty-enable-mod tklcp || true
