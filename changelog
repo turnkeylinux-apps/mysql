@@ -1,3 +1,16 @@
+turnkey-mysql-14.0 (1) turnkey; urgency=low
+
+  * Mysql:
+
+    - Latest Debian Jessie package version of MySQL.
+    - Replace phpMyAdmin with Adminer [#385].
+
+
+  * Note: Please refer to turnkey-core's changelog for changes common to all
+    appliances. Here we only describe changes specific to this appliance.
+
+ -- Ken Robinson <ken@robinsonshome.net>  Fri Jul 17 19:48:22 2015 -0400
+
 turnkey-mysql-13.0 (1) turnkey; urgency=low
 
   * Mysql:
