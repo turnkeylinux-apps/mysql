@@ -34,5 +34,5 @@ Credentials *(passwords set at first boot)*
 
 
 .. _MySQL: http://www.mysql.com/
-.. _TurnKey Core: http://www.turnkeylinux.org/core
+.. _TurnKey Core: https://www.turnkeylinux.org/core
 .. _Adminer: http://adminer.org/
