@@ -52,7 +52,7 @@
                     <h2>Resources and references</h2>
                     <ul>
                         <li><a
-                        href="http://www.turnkeylinux.org/mysql">
+                        href="https://www.turnkeylinux.org/mysql">
                         TurnKey MySQL release notes</a></li>
                     </ul>
 
