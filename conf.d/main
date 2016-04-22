@@ -14,7 +14,6 @@ $MYSQL_BATCH --execute "INSERT INTO mysql.user ( Host , User , Password , Select
 sed --in-place "s/^bind-address/#bind-address/" /etc/mysql/my.cnf
 
 sed -Ei "s|^(server.document-root.*=).*|\1 \"/var/www\"|" /etc/lighttpd/lighttpd.conf
-sed -Ei "s|^(server.port.*=).*|\1 80|" /etc/lighttpd/lighttpd.conf
 
 # enable tklcp site
 lighty-enable-mod tklcp || true
