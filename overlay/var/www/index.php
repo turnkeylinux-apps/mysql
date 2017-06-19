@@ -1,5 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-
+<?php 
+$Host = $_SERVER["HTTP_HOST"];
+?>
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -32,18 +34,15 @@
             <div id="cp">
                 <div class="fragment-content">
                     <div>
-                        <a href="https://<?php print
-                        $_SERVER{'HTTP_HOST'}; ?>:12320"><img
+                        <a href="https://<?=$Host?>:12320"><img
                         src="images/shell.png"/>Web Shell</a>
                     </div>
                     <div>
-                        <a href="https://<?php print
-                        $_SERVER{'HTTP_HOST'}; ?>:12321"><img
+                        <a href="https://<?=$Host?>:12321"><img
                         src="images/webmin.png"/>Webmin</a>
                     </div>
                     <div>
-                        <a href="https://<?php print
-                        $_SERVER{'HTTP_HOST'}; ?>:12322"><img
+                        <a href="https://<?=$Host?>:12322"><img
                         src="images/adminer.png"/>Adminer</a>
                     </div>
                     <div></div>
