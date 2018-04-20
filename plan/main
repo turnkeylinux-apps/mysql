@@ -4,7 +4,7 @@ mysql-server
 
 adminer			/* Adminer - Replaces phpPgAdmin */
 lighttpd		/* we use lighty to power adminer */
-php5-cgi		/* needed for lighty cgi and adminer depend */
-php5-mysql		/* needed for adminer mysql support 
+php-cgi		/* needed for lighty cgi and adminer depend */
+php-mysql		/* needed for adminer mysql support 
 
 webmin-mysql             /* webmin is in base, give the user the option */
