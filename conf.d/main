@@ -1,9 +1,15 @@
 #!/bin/sh -ex
 
 # configure mysql to listen on all interfaces
-sed --in-place "s/^bind-address/#bind-address/" /etc/mysql/my.cnf
+sed --in-place "s/^bind-address/#bind-address/" /etc/mysql/mariadb.conf.d/50-server.cnf
 
 sed -Ei "s|^(server.document-root.*=).*|\1 \"/var/www\"|" /etc/lighttpd/lighttpd.conf
+
+# allow remote connections
+service mysql start
+mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'adminer'@'%'  WITH GRANT OPTION;"
+mysql -u root -e "FLUSH PRIVILEGES;"
+service mysql stop
 
 # enable tklcp site
 lighty-enable-mod tklcp || true

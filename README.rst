@@ -22,7 +22,7 @@ and on top of that:
 
     UPDATE `mysql`.`user` SET `Host` = 'hostname' 
     WHERE CONVERT( `user`.`Host` USING utf8 ) = '%' AND 
-    CONVERT( `user`.`User` USING utf8 ) = 'root' LIMIT 1 ;
+    CONVERT( `user`.`User` USING utf8 ) = 'adminer' LIMIT 1 ;
 
 Note: MySQL can be further tweaked to optimize performance.
 
