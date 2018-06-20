@@ -9,6 +9,7 @@ multi-threaded SQL database server.
 This appliance includes all the standard features in `TurnKey Core`_,
 and on top of that:
 
+- MariaDB_ (drop-in MySQL replacement)
 - Web Control Panel
 - `Adminer`_ administration frontend for MySQL (listening on port
   12322 - uses SSL).
@@ -23,16 +24,16 @@ and on top of that:
     WHERE CONVERT( `user`.`Host` USING utf8 ) = '%' AND 
     CONVERT( `user`.`User` USING utf8 ) = 'root' LIMIT 1 ;
 
-Note: MySQL can be further tweaked to optimize performance, for examples
-refer to: */usr/share/doc/mysql-server-5.1/examples/{small, medium,
-large, huge}*
+Note: MySQL can be further tweaked to optimize performance.
 
 Credentials *(passwords set at first boot)*
 -------------------------------------------
 
--  Webmin, SSH, MySQL, Adminer: username **root**
+-  Webmin, SSH, MySQL (local): username **root**
+-  MySQL (remote), Adminer: username **adminer**
 
 
 .. _MySQL: http://www.mysql.com/
+.. _MariaDB: https://mariadb.com/
 .. _TurnKey Core: https://www.turnkeylinux.org/core
 .. _Adminer: http://adminer.org/
