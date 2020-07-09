@@ -1,10 +1,7 @@
 #include <turnkey/base>
+#include <turnkey/mysql>
 
-mysql-server
-
-adminer			/* Adminer - Replaces phpPgAdmin */
-lighttpd		/* we use lighty to power adminer */
-php-cgi		/* needed for lighty cgi and adminer depend */
-php-mysql		/* needed for adminer mysql support 
-
-webmin-mysql             /* webmin is in base, give the user the option */
+adminer
+lighttpd                /* landing page and Adminer powered by lighty */
+php-cgi                 /* needed for lighty cgi and adminer depend */
+php-mysql               /* needed for adminer mysql support */
