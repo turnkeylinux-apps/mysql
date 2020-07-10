@@ -1,0 +1,29 @@
+#!/bin/bash -ex
+
+# regenerate mysql/mariadb SSL certificates
+
+. /etc/default/inithooks
+
+CERT_DIR=/etc/mysql/certificates
+
+ca_pem=$CERT_DIR/ca.pem
+ca_key=$CERT_DIR/ca.key
+ssl_pem=$CERT_DIR/cert.pem
+ssl_key=$CERT_DIR/cert.key
+ssl_req=$CERT_DIR/req.pem
+
+subj="/C=US/ST=./L=./O='TurnKey MySQL/OU=./CN=./emailAddress=."
+
+mkdir -p $CERT_DIR
+
+openssl genrsa 2048 > $ca_key
+openssl req -new -x509 -nodes -days 365000 -key $ca_key -out $ca_pem -subj "$subj"
+openssl req -newkey rsa:2048 -days 365000 -nodes -keyout $ssl_key -out $ssl_req -subj "$subj"
+openssl rsa -in $ssl_key -out $ssl_key
+openssl x509 -req -in $ssl_req -days 365000 -CA $ca_pem -CAkey $ca_key -set_serial 01 -out $ssl_pem
+
+rm -f $ssl_req
+chown -R mysql:mysql $CERT_DIR
+chmod 400 $CERT_DIR/*
+
+systemctl restart mysql
