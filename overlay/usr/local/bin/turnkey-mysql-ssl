@@ -1,0 +1,93 @@
+#!/bin/bash -e
+
+REMOTE_USER=remote
+INIT=/usr/lib/inithooks/firstboot.d/20regen-mysql-certs
+CONF=/etc/mysql/mariadb.conf.d/50-server.cnf
+CERT_DIR=/etc/mysql/certificates
+
+ca_pem=$CERT_DIR/ca.pem
+ssl_pem=$CERT_DIR/cert.pem
+ssl_key=$CERT_DIR/cert.key
+
+usage() {
+    cat<<EOF
+Syntax: $(basename $0) enable|disable|status|help
+Enable / Disable remote SSL MySQL connections
+
+    enable  Enable SSL for remote MySQL connections
+    disable Disable SSL for remote MySQL connections
+    status  Check status of SSL:
+            - returns msg 'True' & exit code 0 if enabled
+            - returns msg 'False' & exit code 10 if disabled
+    help    Display this help and exit (exit code 1)
+EOF
+exit 1
+}
+
+enable() {
+    # Only re-run the init if the files don't exist
+    if [[ ! -f "$ca_pem" ]] && [[ ! -f "$ssl_key" ]] \
+            && [[ ! -f "$ssl_pem" ]]; then
+        $INIT
+    fi
+
+    sed -i "\|^#ssl[- ]|s|^#||" $CONF
+
+    # If MariaDB is compiled against YaSSL (Debian default) 'ssl-cipher' needs to be disabled.
+    sed -i "\|ssl-cipher|s|^|#|" $CONF
+
+    # If MariaDB compiled against OpenSSL instead, we should explictly set ciphers & disable 'ssl'.
+    #sed -i "s|ssl-cipher.*|ssl-cipher = TLSv1.2, TLSv1.3|" $CONF
+    #sed -i "\|^ssl|s|^|#|" $CONF
+
+    sed -i "s|ssl-ca.*|ssl-ca = $ca_pem|" $CONF
+    sed -i "s|ssl-cert.*|ssl-cert = $ssl_pem|" $CONF
+    sed -i "s|ssl-key.*|ssl-key = $ssl_key|" $CONF
+
+    # Require SSL for remote user
+    grants=$(mysql -u root --disable-column-names -Be "SHOW GRANTS for $REMOTE_USER@'%';")
+    mysql -u root -e "$grants REQUIRE SSL;"
+}
+
+disable() {
+    sed -i "\|^ssl[- ]|s|^|#|" $CONF
+
+    # Disable SSL requirement for remote user
+    grants=$(mysql -u root --disable-column-names -Be "SHOW GRANTS for $REMOTE_USER@'%';")
+    mysql -u root -e "$grants REQUIRE NONE;"
+}
+
+status() {
+    if grep -q "^ssl =" $CONF || grep -q "^ssl-ciper =" $CONF; then
+        echo 0
+    else
+        echo 10
+    fi
+}
+
+case $1 in
+    enable)
+        enable;;
+    disable)
+        disable;;
+    status)
+        ret_code=$(status)
+        if [[ "$ret_code" -eq 0 ]]; then
+            echo "True"
+            exit $ret_code
+        else
+            echo "False"
+            exit $ret_code
+        fi;;
+    help)
+        usage;;
+    *)
+        if [[ -z "$1" ]]; then
+            echo "Argument required."
+        else
+            echo "Unknown argument: '$1'."
+        fi
+        usage;;
+esac
+
+systemctl restart mysql
