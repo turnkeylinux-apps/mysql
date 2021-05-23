@@ -1,3 +1,11 @@
+turnkey-mysql-16.2 (1) turnkey; urgency=low
+
+  * Bugfix 'turnkey-mysql-ssl disable' script - closes #1614.
+
+  * UPDATE THIS CHANGELOG PRIOR TO RELEASE...
+
+ -- Jeremy Davis <jeremy@turnkeylinux.org>  Mon, 24 May 2021 09:06:49 +1000
+
 turnkey-mysql-16.1 (1) turnkey; urgency=low
 
   * Rebuild on latest Debian Buster.
