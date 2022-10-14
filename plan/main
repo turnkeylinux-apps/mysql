@@ -1,7 +1,8 @@
 #include <turnkey/base>
 #include <turnkey/mysql>
 
-adminer
+lighttpd-mod-openssl	/* lighty dep - req'd for https */
+php-fpm 		/* using php-fpm for adminer (and landing page) */
+adminer			/* Adminer - Provides WebUI for MySQL */
 lighttpd                /* landing page and Adminer powered by lighty */
-php-cgi                 /* needed for lighty cgi and adminer depend */
 php-mysql               /* needed for adminer mysql support */

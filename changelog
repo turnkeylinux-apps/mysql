@@ -1,3 +1,17 @@
+turnkey-mysql-17.0 (1) turnkey; urgency=low
+
+  * Bugfix 'turnkey-mysql-ssl disable' script - closes #1614.
+    [Jeremy Davis jeremy@turnkeylinux.org]
+
+  * Updating mysql appliance and its dependencies to v17.0.
+
+  * Update appliance landing page with lighttpd refactoring. Includes adding 
+    adding lighty openssl module to plan, and using new common make files.
+
+  * Replace php-cgi with php-fpm.
+
+ -- Mattie Darden <mattie@turnkeylinux.org>  Fri, 14 Oct 2022 17:22:10 -0400
+
 turnkey-mysql-16.1 (1) turnkey; urgency=low
 
   * Rebuild on latest Debian Buster.
