@@ -5,6 +5,5 @@ COMMON_CONF = adminer-lighttpd adminer-mysql tkl-webcp
 
 include $(FAB_PATH)/common/mk/turnkey/lighttpd.mk
 include $(FAB_PATH)/common/mk/turnkey/php-fpm.mk
-include $(FAB_PATH)/common/mk/turnkey/php.mk
 include $(FAB_PATH)/common/mk/turnkey/mysql.mk
 include $(FAB_PATH)/common/mk/turnkey.mk
