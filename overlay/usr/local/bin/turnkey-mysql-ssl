@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+[[ -z "$DEBUG" ]] || set -x
+
 REMOTE_USER=remote
 INIT=/usr/lib/inithooks/firstboot.d/20regen-mysql-certs
 CONF=/etc/mysql/mariadb.conf.d/50-server.cnf
@@ -24,6 +26,11 @@ EOF
 exit 1
 }
 
+get_grants() {
+    _sql="SHOW GRANTS for $REMOTE_USER@'%';"
+    mysql -u root --disable-column-names -Be "$_sql" | sed "s|REQUIRE.*||I"
+}
+
 enable() {
     # Only re-run the init if the files don't exist
     if [[ ! -f "$ca_pem" ]] && [[ ! -f "$ssl_key" ]] \
@@ -45,7 +52,8 @@ enable() {
     sed -i "s|ssl-key.*|ssl-key = $ssl_key|" $CONF
 
     # Require SSL for remote user
-    grants=$(mysql -u root --disable-column-names -Be "SHOW GRANTS for $REMOTE_USER@'%';")
+    grants=$(get_grants)
+
     mysql -u root -e "$grants REQUIRE SSL;"
 }
 
@@ -53,7 +61,7 @@ disable() {
     sed -i "\|^ssl[- ]|s|^|#|" $CONF
 
     # Disable SSL requirement for remote user
-    grants=$(mysql -u root --disable-column-names -Be "SHOW GRANTS for $REMOTE_USER@'%';")
+    grants=$(get_grants)
     mysql -u root -e "$grants REQUIRE NONE;"
 }
 
