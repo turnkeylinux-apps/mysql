@@ -34,19 +34,15 @@
                 <div class="fragment-content">
                     <div>
                         <a href="https://<?php print
-                        $_SERVER{'HTTP_HOST'}; ?>:12320"><img
-                        src="images/shell.png"/>Web Shell</a>
-                    </div>
-                    <div>
-                        <a href="https://<?php print
-                        $_SERVER{'HTTP_HOST'}; ?>:12321"><img
+                        $_SERVER['HTTP_HOST']; ?>:12321"><img
                         src="images/webmin.png"/>Webmin</a>
                     </div>
                     <div>
                         <a href="https://<?php print
-                        $_SERVER{'HTTP_HOST'}; ?>:12322"><img
+                        $_SERVER['HTTP_HOST']; ?>:12322"><img
                         src="images/adminer.png"/>Adminer</a>
                     </div>
+                    <div></div>
                     <div></div>
                     <div></div>
 
@@ -55,9 +51,9 @@
                         <li><a
                         href="https://www.turnkeylinux.org/mysql">
                         TurnKey MySQL release notes</a></li>
-                        <li>Connection Docs - <a href="#docs">offline</a> / <a
+                        <li>Connection Docs tab (above) has connection info (or see <a
                         href="https://github.com/turnkeylinux-apps/mysql/tree/master/docs">
-                        online</a></li>
+                        online</a>)</li>
                     </ul>
 
                 </div>
